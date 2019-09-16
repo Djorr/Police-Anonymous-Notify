@@ -58,20 +58,6 @@
     </style>
 </head>
 <body class="uk-height-1-1">
-    <header>
-        <div class="pos-f-t">
-            <div class="collapse" id="navbarToggleExternalContent">
-                    <a class="btn btn-black" href="/admin.php" role="button">Admin panel</a>
-                </div>
-            </div>
-            <nav class="navbar navbar-black bg-black">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            </nav>
-        </div>
-    </header>
-
     <div class="uk-vertical-align uk-text-center uk-height-1-1">
         <div class="uk-vertical-align-middle" style="width: 640px; height: 350px;">
             <form class="uk-panel uk-panel-box uk-form uk-form-horizontal" action="/attemptlogin" method="post">

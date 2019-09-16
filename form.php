@@ -9,6 +9,7 @@
 <script src="https://goliath.hypixel.net/cdn-cgi/apps/head/rsjQeg9CKMkfLDB8kU7GG-F1JRE.js"></script><link rel="shortcut icon" href="https://goliath.hypixel.net/favicon.png" type="image/x-icon">
 <link rel="apple-touch-icon-precomposed" href="https://goliath.hypixel.net/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style> 
   html, body {
       font-size: 16px;
@@ -141,6 +142,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $q10 = test_input($_POST["q10"]);
   }
+
+  /* Attempt MySQL server connection. Assuming you are running MySQL
+  server with default setting (user 'root' with no password) */
+  $link = mysqli_connect("localhost", "root", "", "politie_anoniem");
+  
+  // Check connection
+  if($link === false){
+      die("ERROR: Could not connect. " . mysqli_connect_error());
+  }
+  
+  // Attempt insert query execution
+  $sql = "INSERT INTO meldingen (question_1, question_2, question_3, question_4, question_5, question_6, question_7, question_8, question_9, question_10) VALUES
+              ('".$_POST["q1"]."','".$_POST["q2"]."','".$_POST["q3"]."','".$_POST["q4"]."','".$_POST["q5"]."','".$_POST["q6"]."','".$_POST["q7"]."','".$_POST["q8"]."','".$_POST["q9"]."','".$_POST["q10"]."')";
+  if(mysqli_query($link, $sql)){
+      echo "Records added successfully.";
+  } else{
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+  }
+  
+  // Close connection
+  mysqli_close($link);
 }
 
 function test_input($data) {
@@ -158,64 +180,59 @@ function test_input($data) {
 
       <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
         Beschrijf zo uitgebreid mogelijk de situatie waarover je wilt melden. <br>
-        <input type="text" name="name" value="<?php echo $q1;?>">
+        <input type="text" name="q1" value="<?php echo $q1;?>">
         <span class="error">* <?php echo $q1Err;?></span>
         <br><br>
 
         Op welke datum heeft dit plaatsgevonden of gaat dit gebeuren? <br>
-        <input type="date" name="email" value="<?php echo $q2;?>">
-        <span class="error">* <?php echo $q2Err;?></span>
+        <input type="date" name="q2" value="<?php echo $q2;?>">
         <br><br>
 
         <h1>Weet je wie de dader is?</h1> <br>
 
         Kan je meer vertellen over deze persoon of personen? <br>
-        <input type="tel" name="website" value="<?php echo $q3;?>">
-        <span class="error">* <?php echo $q3Err;?></span>
+        <input type="text" name="q3" value="<?php echo $q3;?>">
         <br><br>
 
         Weet je het telefoonnummer van de dader(s)? <br>
-        <input type="tel" name="website" value="<?php echo $q4;?>">
-        <span class="error">* <?php echo $q4Err;?></span>
+        <input type="text" name="q4" value="<?php echo $q4;?>">
         <br><br>
 
         <h1>Waar speelt dit?</h1> <br>
 
         Woonplaats? <br>
-        <input type="text" name="website" value="<?php echo $q5;?>">
-        <span class="error">* <?php echo $q5Err;?></span>
+        <input type="text" name="q5" value="<?php echo $q5;?>">
         <br><br>
 
         Weet je het adres? <br>
-        <input type="text" name="website" value="<?php echo $q6;?>">
+        <input type="text" name="q6" value="<?php echo $q6;?>">
         <span class="error">* <?php echo $q6Err;?></span>
         <br><br>
 
         <h1>Voertuigen</h1> <br>
 
         Gebruikt de dader een voertuig? <br>
-        <input type="text" name="website" value="<?php echo $q7;?>">
+        <input type="text" name="q7" value="<?php echo $q7;?>">
         <span class="error">* <?php echo $q7Err;?></span>
         <br><br>
 
         <h1>Overige vragen</h1> <br>
 
         Heb je het bovenstaande zelf waargenomen of heb je het van iemand anders gehoord? <br>
-        <input type="text" name="website" value="<?php echo $q8;?>">
+        <input type="text" name="q8" value="<?php echo $q8;?>">
         <span class="error">* <?php echo $q8Err;?></span>
         <br><br>
 
         Heb je nog meer informatie die van belang kan zijn ? <br>
-        <input type="text" name="website" value="<?php echo $q9;?>">
-        <span class="error">* <?php echo $q9Err;?></span>
+        <input type="text" name="q9" value="<?php echo $q9;?>">
         <br><br>
 
         Kan de dader weten dat jij de melder bent? <br>
-        <input type="text" name="website" value="<?php echo $q10;?>">
+        <input type="text" name="q10" value="<?php echo $q10;?>">
         <span class="error">* <?php echo $q10Err;?></span>
         <br><br>
 
-        <a class="btn btn-primary" href="/done.php" role="button">Versturen</a>
+        <input class="btn btn-primary" href="/done.php" type="submit" value="Versturen">
       </form>
     </div>
   </div>
