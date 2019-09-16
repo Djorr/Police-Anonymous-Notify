@@ -12,12 +12,14 @@
 <script src="https://goliath.hypixel.net/cdn-cgi/apps/head/rsjQeg9CKMkfLDB8kU7GG-F1JRE.js"></script><link rel="shortcut icon" href="https://goliath.hypixel.net/favicon.png" type="image/x-icon">
 <link rel="apple-touch-icon-precomposed" href="https://goliath.hypixel.net/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 <style>
         html, body {
             font-size: 16px;
             font-family: "Open Sans", sans-serif;
             font-family: 300;
             background: #222 !important;
+            overflow: hidden;
         }
 
         .uk-button-success {
@@ -54,20 +56,72 @@
                 margin-left: 85px !important;
             }
         }
+        .login {
+            width: 400px;
+            background-color: #ffffff;
+            box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+            margin: 100px auto;
+        }
+        .login h1 {
+            text-align: center;
+            color: #5b6574;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+            border-bottom: 1px solid #dee0e4;
+        }
+        .login form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        .login form label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: #3274d6;
+            color: #ffffff;
+        }
+        .login form input[type="password"], .login form input[type="text"] {
+            width: 310px;
+            height: 50px;
+            border: 1px solid #dee0e4;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        .login form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #3274d6;
+            border: 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+            transition: background-color 0.2s;
+        }
+        .login form input[type="submit"]:hover {
+            background-color: #2868c7;
+            transition: background-color 0.2s;
+        }
     </style>
 </head>
 <body class="uk-height-1-1">
-    <div class="uk-vertical-align uk-text-center uk-height-1-1">
-            <div class="uk-vertical-align-middle" style="width: 640px;">
-                <div class="alert alert-success" role="alert">
-                <h1 class="alert-heading">Gelukt!</h1>
-                <p>Wij willen u bedanken voor uw tip!</p>
-                <hr>
-                <p class="mb-0">Deze melding word verstuurd naar ons Politie Centrum.</p>
-                <br>
-                <a class="btn btn-primary" href="/index.php" role="button">Terug naar de begin pagina</a>
-            </div>
-        </div>
+    <div class="login">
+        <h1>Admin - Inloggen</h1>
+        <form action="authenticate.php" method="post">
+            <label for="username">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="username" placeholder="Gebruikersnaam" id="username" required>
+            <label for="password">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password" placeholder="Wachtwoord" id="password" required>
+            <input type="submit" value="Login">
+        </form>
     </div>
 </body>
 </html>

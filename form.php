@@ -215,7 +215,7 @@ function test_input($data) {
         <span class="error">* <?php echo $q10Err;?></span>
         <br><br>
 
-        <input class="btn btn-primary" type="submit" value="Submit"> 
+        <a class="btn btn-primary" href="/done.php" role="button">Versturen</a>
       </form>
     </div>
   </div>
