@@ -1,4 +1,5 @@
 **Note: This was an project for school that i made and it was made in the dutch language.**
+**Note: Database isn't available, maybe i'll add it in the future.**
 
 # Police Anonymous Notify
 A website where users can notify anonymously to the police.
